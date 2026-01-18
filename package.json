@@ -1,18 +1,31 @@
 {
-  "name": "a11y-lib",
-  "private": true,
-  "workspaces": [
-    "packages/*"
+  "name": "@gscd/a11y-engine",
+  "version": "1.0.0",
+  "description": "A11yMARKET's Accessibility Library",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "author": "BlueNyang",
+  "license": "MIT",
+  "files": [
+    "dist"
   ],
   "scripts": {
-    "build": "npm run build --workspaces",
-    "test": "npm run test --workspaces"
+    "build": "rollup -c rollup.config.mjs",
+    "dev": "rollup -c rollup.config.mjs -w"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^29.0.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-typescript": "^12.3.0",
+    "rollup": "^4.57.1",
+    "rollup-plugin-dts": "^6.3.0",
+    "tslib": "^2.8.1",
+    "typescript": "^5.9.3"
   },
   "keywords": [
     "accessibility",
     "a11y",
     "library"
-  ],
-  "author": "BlueNyang",
-  "license": "MIT"
+  ]
 }
