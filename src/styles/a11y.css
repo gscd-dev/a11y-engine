@@ -1,0 +1,46 @@
+/* 자간 (Text Spacing) */
+.a11y-spacing-1 {
+  letter-spacing: 0.1em !important;
+}
+.a11y-spacing-2 {
+  letter-spacing: 0.2em !important;
+}
+
+/* 행높이 (Line Height) */
+.a11y-leading-1 {
+  line-height: 1.6 !important;
+}
+.a11y-leading-2 {
+  line-height: 2 !important;
+}
+
+/* 글자 크기 (Text Size) */
+.a11y-text-size-1 {
+  font-size: 115% !important;
+}
+.a11y-text-size-2 {
+  font-size: 130% !important;
+}
+
+/* 대비 (Contrast) */
+.a11y-contrast-invert {
+  filter: invert(100%) hue-rotate(180deg);
+}
+.a11y-contrast-high {
+  background-color: #000 !important;
+  color: #ff0 !important;
+}
+.a11y-contrast-low {
+  background-color: #eee !important;
+  color: #777 !important;
+}
+
+/* 기타 강조 */
+.a11y-link-highlight a {
+  text-decoration: underline !important;
+  font-weight: bold !important;
+  color: #0044cc !important;
+}
+.a11y-cursor-highlight {
+  cursor: crosshair !important;
+} /* 간단한 예시 */
