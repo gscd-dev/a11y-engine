@@ -1,25 +1,41 @@
 import typescript from "@rollup/plugin-typescript";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
+import postcss from "rollup-plugin-postcss";
 import dts from "rollup-plugin-dts";
-import pkg from "./package.json" assert { type: "json" };
 
 export default [
   {
-    input: "src/index.ts",
+    input: {
+      index: "src/index.ts",
+      react: "src/adapters/react.ts",
+      vue: "src/adapters/vue.ts",
+      core: "src/core/A11yEngine.ts",
+    },
     output: [
       {
-        file: pkg.main,
-        format: "cjs",
+        dir: "dist",
+        format: "esm",
+        entryFileNames: "[name].js",
         sourcemap: true,
       },
       {
-        file: pkg.module,
-        format: "esm",
+        dir: "dist",
+        format: "cjs",
+        entryFileNames: "[name].cjs",
         sourcemap: true,
       },
     ],
-    plugins: [resolve(), commonjs(), typescript({ tsconfig: "./tsconfig.json" })],
+    plugins: [
+      resolve(),
+      commonjs(),
+      typescript({ tsconfig: "./tsconfig.json" }),
+      postcss({
+        extract: true,
+        minimize: true,
+      }),
+    ],
+    external: ["react", "vue"],
   },
   {
     input: "dist/types/index.d.ts",
