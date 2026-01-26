@@ -1,5 +1,3 @@
-import type { A11yState } from "@/types";
-
 export const A11Y_STORAGE_KEY = "a11y-settings";
 
 export const A11Y_CONFIG = {
@@ -9,6 +7,18 @@ export const A11Y_CONFIG = {
   LINE_HEIGHT: { levels: 3, prefix: "a11y-leading" },
   ALIGN: ["left", "center", "right"],
 } as const;
+
+export interface A11yState {
+  contrastLevel: number;
+  textSizeLevel: number;
+  textSpacingLevel: number;
+  lineHeightLevel: number;
+  textAlign: "left" | "center" | "right";
+  smartContrast: boolean;
+  highlightLinks: boolean;
+  cursorHighlight: boolean;
+  screenReader: boolean;
+}
 
 export const defaultState: A11yState = {
   contrastLevel: 0,

@@ -1,5 +1,4 @@
-import { A11Y_CONFIG, A11Y_STORAGE_KEY, defaultState } from "./constants";
-import type { A11yState } from "@/types";
+import { A11Y_CONFIG, A11Y_STORAGE_KEY, type A11yState, defaultState } from "./constants";
 import { ScreenReader } from "./ScreenReader";
 
 // Accessibility Engine to manage and apply accessibility settings
