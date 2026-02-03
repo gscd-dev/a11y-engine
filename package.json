@@ -1,6 +1,6 @@
 {
   "name": "@gscd/a11y-engine",
-  "version": "1.0.0",
+  "version": "0.8.0",
   "description": "A11yMARKET's Accessibility Library",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -14,16 +14,16 @@
       "types": "./dist/index.d.ts"
     },
     "./react": {
-      "import": "./dist/adapters/react.mjs",
-      "require": "./dist/adapters/react.cjs",
-      "types": "./dist/adapters/react.d.ts"
+      "import": "./dist/react.mjs",
+      "require": "./dist/react.cjs",
+      "types": "./dist/types/adapters/react.d.ts"
     },
     "./vue": {
-      "import": "./dist/adapters/vue.mjs",
-      "require": "./dist/adapters/vue.cjs",
-      "types": "./dist/adapters/vue.d.ts"
+      "import": "./dist/vue.mjs",
+      "require": "./dist/vue.cjs",
+      "types": "./dist/types/adapters/vue.d.ts"
     },
-    "./css": "./dist/styles/a11y.css"
+    "./css": "./dist/a11y.css"
   },
   "files": [
     "dist"
@@ -48,7 +48,7 @@
     "a11y",
     "library"
   ],
-  "dependencies": {
+  "peerDependencies": {
     "react": "^19.2.4",
     "vue": "^3.5.27"
   }

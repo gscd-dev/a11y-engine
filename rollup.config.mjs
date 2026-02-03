@@ -11,12 +11,13 @@ export default [
       react: "src/adapters/react.ts",
       vue: "src/adapters/vue.ts",
       core: "src/core/A11yEngine.ts",
+      css: "src/style.css",
     },
     output: [
       {
         dir: "dist",
         format: "esm",
-        entryFileNames: "[name].js",
+        entryFileNames: "[name].mjs",
         sourcemap: true,
       },
       {
@@ -31,7 +32,7 @@ export default [
       commonjs(),
       typescript({ tsconfig: "./tsconfig.json" }),
       postcss({
-        extract: true,
+        extract: "a11y.css",
         minimize: true,
       }),
     ],
