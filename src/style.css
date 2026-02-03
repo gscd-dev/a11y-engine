@@ -50,7 +50,7 @@ html.a11y-contrast-3 {
 
 html.a11y-smart-contrast {
   /* 배경과 글자 색상 차이에 따라 자동으로 고대비/저대비 적용 */
-  filter: invert(1) hue-rotate(180deg) contrast(1.2) !important;
+  filter: invert(1) hue-rotate(180deg) contrast(1.2);
 }
 
 /* 이미지/비디오/아이콘 등은 반전 제외 (이중 반전으로 원상 복구) */
@@ -59,13 +59,13 @@ html.a11y-smart-contrast video,
 html.a11y-smart-contrast iframe,
 html.a11y-smart-contrast .no-invert {
   /* 배경이미지가 있는 div 등을 위한 no-invert 클래스 */
-  filter: invert(1) hue-rotate(180deg) !important;
+  filter: invert(1) hue-rotate(180deg);
 }
 
 /* (선택사항) 그림자 제거: 반전 모드에서는 그림자가 어색하게 보일 수 있음 */
 html.a11y-smart-contrast * {
-  box-shadow: none !important;
-  text-shadow: none !important;
+  box-shadow: none;
+  text-shadow: none;
 }
 
 /* 글자 크기 */
@@ -78,38 +78,38 @@ html.a11y-text-size-2 {
 
 /* 글자 간격 */
 html.a11y-spacing-1 * {
-  letter-spacing: 0.05em !important;
+  letter-spacing: 0.05em;
 }
 html.a11y-spacing-2 * {
-  letter-spacing: 0.1em !important;
+  letter-spacing: 0.1em;
 }
 
 /* 줄 간격 */
 html.a11y-leading-1 * {
-  line-height: 1.8 !important;
+  line-height: 1.8;
 }
 html.a11y-leading-2 * {
-  line-height: 2.2 !important;
+  line-height: 2.2;
 }
 
 /* 글자 정렬 */
 html.a11y-align-center * {
-  text-align: center !important;
+  text-align: center;
 }
 html.a11y-align-right * {
-  text-align: right !important;
+  text-align: right;
 }
 
 /* 링크 강조 */
 html.a11y-link-highlight a {
-  text-decoration: underline !important;
-  text-decoration-style: solid !important;
-  text-decoration-thickness: 2px !important;
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 2px;
 
   /* 형광 노랑 배경에 검은 글씨 */
-  background-color: oklch(0.95 0.18 100) !important;
-  color: oklch(0 0 0) !important;
-  font-weight: bold !important;
+  background-color: oklch(0.95 0.18 100);
+  color: oklch(0 0 0);
+  font-weight: bold;
 }
 
 /* 커서 강조 */
@@ -121,7 +121,7 @@ html.a11y-cursor-highlight * {
   cursor:
     url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><circle cx="32" cy="32" r="24" fill="yellow" opacity="0.5"/><line x1="32" y1="0" x2="32" y2="64" stroke="red" stroke-width="4"/><line x1="0" y1="32" x2="64" y2="32" stroke="red" stroke-width="4"/></svg>')
       32 32,
-    auto !important;
+    auto;
 }
 
 /* 클릭 가능한 요소: 파란 원 + 빨간 십자선 */
@@ -143,5 +143,5 @@ html.a11y-cursor-highlight summary * {
   cursor:
     url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><circle cx="32" cy="32" r="24" fill="yellow" opacity="0.5"/><line x1="32" y1="0" x2="32" y2="64" stroke="blue" stroke-width="4"/><line x1="0" y1="32" x2="64" y2="32" stroke="blue" stroke-width="4"/></svg>')
       32 32,
-    pointer !important;
+    pointer;
 }
