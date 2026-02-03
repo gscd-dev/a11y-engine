@@ -10,20 +10,75 @@ class A11yEngine {
   private screenReaderEngine = new ScreenReader();
 
   constructor() {
+    this.state = { ...defaultState };
     const saved = localStorage.getItem(A11Y_STORAGE_KEY);
-    this.state = saved ? JSON.parse(saved) : defaultState;
+    if (saved) {
+      const parsedState: Partial<A11yState> = JSON.parse(saved);
+      if (!this.checkValidation(parsedState)) {
+        localStorage.removeItem(A11Y_STORAGE_KEY);
+      }
+      this.state = { ...this.state, ...parsedState };
+    }
     this.apply();
   }
 
-  private apply() {
+  private checkValidation(state: Partial<A11yState>): boolean {
+    // Validate the provided state against A11Y_CONFIG
+    if (state.contrastLevel !== undefined) {
+      if (state.contrastLevel < 0 || state.contrastLevel >= A11Y_CONFIG.CONTRAST.levels)
+        return false;
+    }
+    if (state.textSizeLevel !== undefined) {
+      if (state.textSizeLevel < 0 || state.textSizeLevel >= A11Y_CONFIG.TEXT_SIZE.levels)
+        return false;
+    }
+    if (state.textSpacingLevel !== undefined) {
+      if (state.textSpacingLevel < 0 || state.textSpacingLevel >= A11Y_CONFIG.SPACING.levels)
+        return false;
+    }
+    if (state.lineHeightLevel !== undefined) {
+      if (state.lineHeightLevel < 0 || state.lineHeightLevel >= A11Y_CONFIG.LINE_HEIGHT.levels)
+        return false;
+    }
+    if (state.textAlign !== undefined) {
+      if (!A11Y_CONFIG.ALIGN.includes(state.textAlign)) return false;
+    }
+    if (state.smartContrast !== undefined) {
+      if (typeof state.smartContrast !== "boolean") return false;
+    }
+    if (state.highlightLinks !== undefined) {
+      if (typeof state.highlightLinks !== "boolean") return false;
+    }
+    if (state.cursorHighlight !== undefined) {
+      if (typeof state.cursorHighlight !== "boolean") return false;
+    }
+    if (state.screenReader !== undefined) {
+      if (typeof state.screenReader !== "boolean") return false;
+    }
+    return true;
+  }
+
+  private apply(): void {
     // Apply the current accessibility settings to the document
     const root = document.documentElement;
 
     // Clear existing accessibility-related classes
-    const prefixes = ["a11y-", "dark"];
+    const prefixes = [
+      "a11y-contrast-",
+      "a11y-text-size-",
+      "a11y-spacing-",
+      "a11y-leading-",
+      "a11y-align-",
+    ];
+
+    const singleClass = ["a11y-smart-contrast", "a11y-link-highlight", "a11y-cursor-highlight"];
 
     root.classList.forEach((cls) => {
       if (prefixes.some((p) => cls.startsWith(p))) root.classList.remove(cls);
+    });
+
+    singleClass.forEach((cls) => {
+      if (root.classList.contains(cls)) root.classList.remove(cls);
     });
 
     const {
@@ -59,12 +114,11 @@ class A11yEngine {
     localStorage.setItem(A11Y_STORAGE_KEY, JSON.stringify(this.state));
   }
 
-  private notify() {
+  private notify(): void {
     this.listeners.forEach((callback) => callback({ ...this.state }));
-    localStorage.setItem(A11Y_STORAGE_KEY, JSON.stringify(this.state));
   }
 
-  private update() {
+  private update(): void {
     this.apply();
     this.notify();
   }
@@ -74,44 +128,74 @@ class A11yEngine {
     return () => this.listeners.delete(listener);
   }
 
-  applySettings(data?: Partial<A11yState>) {
+  applySettings(data?: Partial<A11yState>): void {
     // Initialize state with saved settings or default initial state
-    const saved = localStorage.getItem(A11Y_STORAGE_KEY);
-    this.state = saved ? JSON.parse(saved) : defaultState;
-
-    if (data) this.state = { ...this.state, ...data };
-    this.apply();
+    if (data) {
+      if (!this.checkValidation(data)) {
+        throw new Error("Invalid accessibility settings provided.");
+      }
+      this.state = { ...this.state, ...data };
+    }
+    this.update();
   }
 
   // Exposed methods to modify accessibility settings
-  cycleContrast() {
+  cycleContrast(): void {
     this.state.contrastLevel = (this.state.contrastLevel + 1) % A11Y_CONFIG.CONTRAST.levels;
     this.update();
   }
 
-  cycleTextSize() {
+  cycleTextSize(): void {
     this.state.textSizeLevel = (this.state.textSizeLevel + 1) % A11Y_CONFIG.TEXT_SIZE.levels;
     this.update();
   }
 
-  cycleTextSpacing() {
+  cycleTextSpacing(): void {
     this.state.textSpacingLevel = (this.state.textSpacingLevel + 1) % A11Y_CONFIG.SPACING.levels;
     this.update();
   }
 
-  toggleScreenReader() {
+  cycleLineHeight(): void {
+    this.state.lineHeightLevel = (this.state.lineHeightLevel + 1) % A11Y_CONFIG.LINE_HEIGHT.levels;
+    this.update();
+  }
+
+  cycleTextAlign(): void {
+    const currentIndex = A11Y_CONFIG.ALIGN.indexOf(this.state.textAlign);
+    const nextIndex = (currentIndex + 1) % A11Y_CONFIG.ALIGN.length;
+    this.state.textAlign = A11Y_CONFIG.ALIGN[nextIndex];
+    this.update();
+  }
+
+  toggleSmartContrast(): void {
+    this.state.smartContrast = !this.state.smartContrast;
+    this.update();
+  }
+
+  toggleHighlightLinks(): void {
+    this.state.highlightLinks = !this.state.highlightLinks;
+    this.update();
+  }
+
+  toggleCursorHighlight(): void {
+    this.state.cursorHighlight = !this.state.cursorHighlight;
+    this.update();
+  }
+
+  toggleScreenReader(): void {
     this.state.screenReader = !this.state.screenReader;
     this.update();
   }
 
-  resetAll() {
+  resetAll(): void {
     this.state = { ...defaultState };
     this.update();
   }
 
-  getState() {
-    return { ...this.state };
+  getState(): A11yState {
+    return Object.freeze({ ...this.state });
   }
 }
 
-export const a11yEngine = new A11yEngine();
+export const a11yEngine =
+  typeof window !== "undefined" && typeof document !== "undefined" ? new A11yEngine() : null;
