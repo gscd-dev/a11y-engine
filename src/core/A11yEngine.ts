@@ -195,7 +195,10 @@ class A11yEngine {
   getState(): A11yState {
     return Object.freeze({ ...this.state });
   }
+
+  setScreenReaderLanguage(lang: string): void {
+    this.screenReaderEngine.changeLanguage(lang);
+  }
 }
 
-export const a11yEngine =
-  typeof window !== "undefined" && typeof document !== "undefined" ? new A11yEngine() : null;
+export const a11yEngine = new A11yEngine();
