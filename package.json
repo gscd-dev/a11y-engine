@@ -7,6 +7,23 @@
   "types": "dist/index.d.ts",
   "author": "BlueNyang",
   "license": "MIT",
+  "homepage": "https://github.com/Gamesung-Coding",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Gamesung-Coding/a11y-engine.git"
+  },
+  "contributors": [
+    {
+      "name": "Gamesung Coding",
+      "githubUsername": "Gamesung-Coding",
+      "url": "https://github.com/Gamesung-Coding"
+    },
+    {
+      "name": "BlueNyang",
+      "githubUsername": "BlueNyang",
+      "url": "https://github.com/BlueNyang"
+    }
+  ],
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
