@@ -7,10 +7,14 @@
   "types": "dist/index.d.ts",
   "author": "BlueNyang",
   "license": "MIT",
-  "homepage": "https://github.com/Gamesung-Coding",
+  "homepage": "https://github.com/Gamesung-Coding/a11y-engine#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Gamesung-Coding/a11y-engine.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "contributors": [
     {
@@ -48,7 +52,9 @@
     "./css": "./dist/a11y.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "build": "rollup -c rollup.config.mjs",
