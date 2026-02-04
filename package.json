@@ -1,38 +1,12 @@
 {
-  "name": "@gscd/a11y-engine",
-  "version": "1.0.2",
+  "name": "@gscd-dev/a11y-engine",
+  "version": "1.0.4",
   "description": "A11yMARKET's Accessibility Library",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "author": "BlueNyang",
   "license": "MIT",
-  "homepage": "https://github.com/Gamesung-Coding/a11y-engine#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Gamesung-Coding/a11y-engine.git"
-  },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
-  },
-  "contributors": [
-    {
-      "name": "Gamesung Coding",
-      "githubUsername": "Gamesung-Coding",
-      "url": "https://github.com/Gamesung-Coding"
-    },
-    {
-      "name": "Sumin Kim",
-      "githubUsername": "Gravity251",
-      "url": "https://github.com/Gravity251"
-    },
-    {
-      "name": "GyuTae Ahn",
-      "githubUsername": "BlueNyang",
-      "url": "https://github.com/BlueNyang"
-    }
-  ],
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
@@ -52,9 +26,7 @@
     "./css": "./dist/a11y.css"
   },
   "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
+    "dist"
   ],
   "scripts": {
     "build": "rollup -c rollup.config.mjs",

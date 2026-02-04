@@ -29,7 +29,7 @@ jobs:
           node-version: "20"
           registry-url: "https://npm.pkg.github.com/"
           # scope 설정을 추가하면 해당 스코프 패키지만 GitHub로 보냅니다.
-          scope: "@gscd"
+          scope: "@gscd-dev"
       - run: npm ci
       - run: npm publish
         env:

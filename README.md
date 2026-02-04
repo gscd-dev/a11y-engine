@@ -1,6 +1,6 @@
 # @gscd/a11y-engine
 
-**A11yMARKET's Accessibility Library**는 웹 애플리케이션의 접근성 설정을 통합 관리하고 실시간으로 적용하는 강력한 엔진입니다. 이 프로젝트는 [a11y-market-web](https://github.com/Gamesung-Coding/a11y-market-web)에서 개발된 핵심 로직을 바탕으로 고도화되었습니다.
+**A11yMARKET's Accessibility Library**는 웹 애플리케이션의 접근성 설정을 통합 관리하고 실시간으로 적용하는 강력한 엔진입니다. 이 프로젝트는 [a11y-market-web](https://github.com/gscd-dev/a11y-market-web)에서 개발된 핵심 로직을 바탕으로 고도화되었습니다.
 
 ---
 
@@ -107,7 +107,7 @@ const { state, actions } = useA11y("ko-KR");
 
 이 프로젝트는 다음 개발자들의 협업과 초기 프로젝트를 바탕으로 탄생했습니다.
 
-- **Base Code:** [Gamesung-Coding/a11y-market-web](https://github.com/Gamesung-Coding/a11y-market-web)
+- **Base Code:** [gscd-dev/a11y-market-web](https://github.com/gscd-dev/a11y-market-web)
 - **Core Developers:**
   - **[Gravity 251](https://github.com/Gravity251)** (Sumin Kim)
   - **[BlueNyang](https://github.com/BlueNyang)** (GyuTae Ahn)
@@ -118,4 +118,4 @@ const { state, actions } = useA11y("ko-KR");
 
 **MIT License**
 
-See [LICENSE](https://github.com/Gamesung-Coding/a11y-market-web?tab=MIT-1-ov-file#readme) for more information.
+See [LICENSE](https://github.com/gscd-dev/a11y-market-web?tab=MIT-1-ov-file#readme) for more information.
