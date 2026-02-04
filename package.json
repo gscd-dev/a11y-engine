@@ -10,7 +10,7 @@
   "homepage": "https://github.com/Gamesung-Coding",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Gamesung-Coding/a11y-engine.git"
+    "url": "git+https://github.com/Gamesung-Coding/a11y-engine.git"
   },
   "contributors": [
     {
@@ -19,7 +19,12 @@
       "url": "https://github.com/Gamesung-Coding"
     },
     {
-      "name": "BlueNyang",
+      "name": "Sumin Kim",
+      "githubUsername": "Gravity251",
+      "url": "https://github.com/Gravity251"
+    },
+    {
+      "name": "GyuTae Ahn",
       "githubUsername": "BlueNyang",
       "url": "https://github.com/BlueNyang"
     }

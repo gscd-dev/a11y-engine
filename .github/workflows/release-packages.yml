@@ -1,0 +1,36 @@
+name: Publish to npm and GitHub
+
+on:
+  release:
+    types: [created] # GitHub에서 Release를 생성하면 실행
+
+jobs:
+  # npmjs.com 배포 작업
+  publish-npm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          registry-url: "https://registry.npmjs.org/"
+      - run: npm ci
+      - run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # GitHub Packages 배포 작업
+  publish-gpr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          registry-url: "https://npm.pkg.github.com/"
+          # scope 설정을 추가하면 해당 스코프 패키지만 GitHub로 보냅니다.
+          scope: "@gscd"
+      - run: npm ci
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
